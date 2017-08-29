@@ -38,35 +38,56 @@ var cars = [
   }
 ];
 
+var people = [
+    {
+        name: 'Joe',
+        age: 44,
+        job: 'teacher'
+    },
+    {
+        name: 'Jim',
+        age: 44,
+        job: 'teacher'
+    },
+    {
+        name: 'Jack',
+        age: 44,
+        job: 'teacher'
+    }
+];
+
 var table = document.querySelector("#cars-table");
+fillTable(table, cars);
 setTimeout(function() {
-  var tBody = table.querySelector("tbody");
-  fillTable(tBody, cars);
-}, 1000);
+    fillTable(table, people);
+}, 5000);
 
 // Táblázat kitöltő függvény.
-function fillTable(body, data) {
+function fillTable(element, data) {
+    // Fejléc kitöltése.
+  var head = element.querySelector("thead tr");
+  var body = element.querySelector("tbody");
+  var headContent = "<th>#</th>";
+  for (var k in data[0]) {
+    headContent += "<th>" + k + "</th>";
+  }
+  head.innerHTML = headContent;
+
   // A tábla tartalma.
   var content = "";
-
   // For ciklussal bejárjuk a tömböt.
   for (var i = 0; i < data.length; i++) {
-
     // Táblázat sor.
     content += "<tr>";
-
     // Szám cella.
     content += "<td>" + (i + 1) + "</td>";
-
     // Az objektum tulajdonságai.
     for (var k in data[i]) {
         content += "<td>" + data[i][k] + "</td>";
     }
-
     // Sor lezárása.
     content += "</tr>\n";
   }
-
   // Tartalom betöltése a táblázatba.
   body.innerHTML = content;
 }
