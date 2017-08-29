@@ -14,12 +14,17 @@ var cars = [
   {
     type: "Yaris",
     man: "Toyota",
-    year: 2010
+    year: 2009
   },
   {
     type: "6",
     man: "Mazda",
     year: 2010
+  },
+  {
+    type: "Ávia",
+    man: "Ávia",
+    year: 1111
   },
   {
     type: "525d",
@@ -29,7 +34,7 @@ var cars = [
   {
     type: "Insignia",
     man: "Opel",
-    year: 2010
+    year: 1997
   },
   {
     type: "Passat",
@@ -57,10 +62,30 @@ var people = [
 ];
 
 var table = document.querySelector("#cars-table");
-fillTable(table, cars);
+
+// Kattintás figyelése a betöltő gombokon.
+document.querySelector(".load-cars-btn").addEventListener("click", function() {
+    fillTable(table, cars);
+});
+document.querySelector(".load-people-btn").addEventListener("click", function() {
+    fillTable(table, people);
+});
+document.querySelector(".sort-type").addEventListener("click", function() {
+    cars.sort( function(a,b) {
+        return (a.type).localeCompare((b.type));
+      });
+    fillTable(table, cars);
+});
+
+var randomInterval = setInterval( function() {
+    // console.log( Math.floor(Math.random() * 100 + 100) );
+}, 2000);
+
+
+/*fillTable(table, cars);
 setTimeout(function() {
     fillTable(table, people);
-}, 5000);
+}, 5000);*/
 
 // Táblázat kitöltő függvény.
 function fillTable(element, data) {
