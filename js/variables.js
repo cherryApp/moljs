@@ -77,6 +77,15 @@ document.querySelector(".sort-type").addEventListener("click", function() {
     fillTable(table, cars);
 });
 
+// Szűrés típus alapján.
+document.querySelector(".type-search").addEventListener("keyup", function() {
+    var text = this.value.toLowerCase();
+    var filteredCars = cars.filter( function(item) {
+        return item.type.toLowerCase().indexOf(text) > -1;
+    });
+    fillTable(table, filteredCars);
+});
+
 var randomInterval = setInterval( function() {
     // console.log( Math.floor(Math.random() * 100 + 100) );
 }, 2000);
